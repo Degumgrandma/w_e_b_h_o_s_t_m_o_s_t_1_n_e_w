@@ -1,0 +1,35 @@
+name: wmh1keep
+
+on:
+  schedule:
+    - cron: "0 0 */6 * *"  # 每6天的 00:00 UTC 执行一次
+  workflow_dispatch:       # 支持手动触发
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Elchecki deponejon
+        uses: actions/checkout@v4
+
+      - name: Agordi Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Instali Playwright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install chromium
+          python -m pip install requests
+
+      - name: Ruli Teni-Salutan-Staton
+        env:
+          UZANTONOMO: ${{ secrets.UZANTONOMO }}
+          PASVORTO: ${{ secrets.PASVORTO }}
+          TELEGRAM_SIGNALO: ${{ secrets.TELEGRAM_SIGNALO }}
+          TELEGRAM_BABILO_ID: ${{ secrets.TELEGRAM_BABILO_ID }}
+        run: |
+          python login.py

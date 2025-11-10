@@ -31,7 +31,7 @@ def ensaluta_konto(playwright, UZANTONOMO, PWD):
         #page.get_by_text("Login").click()
         #time.sleep(2)
         mesaĝaj_partoj.append("✍️ 正在输入账号")
-        page.get_by_role("textbox", name="username").fill(UZANTONOMO)
+        page.get_by_role("textbox", name="Email Address").fill(UZANTONOMO)
         time.sleep(2)
         mesaĝaj_partoj.append("🔑 正在输入密码")
         page.get_by_role("textbox", name="password").fill(PASVORTO)
